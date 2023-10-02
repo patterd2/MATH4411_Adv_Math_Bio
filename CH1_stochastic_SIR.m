@@ -86,7 +86,7 @@ end
  end
  xlabel('S', 'fontsize', 20)
  ylabel('I', 'fontsize', 20)
-title('Sample Trajectories','fontsize',20)
+ title('Sample Trajectories','fontsize',20)
  hold off
  
 % now process the data 
