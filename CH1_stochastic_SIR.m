@@ -1,4 +1,5 @@
 % Gillespie simulation for the SIR process
+
 % reaction 1 infection S + I -> 2I at rate alpha
 % reaction 2 recovery I -> R at rate beta
  

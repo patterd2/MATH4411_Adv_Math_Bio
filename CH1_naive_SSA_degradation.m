@@ -4,9 +4,8 @@ k=0.1; % reaction rate parameter
 Ainitial=20; % initial number of A molecules, n0 in the notes
 dt=0.005; % discretisation parameter/step size -> play with this, test limits!
 numberofrealisations=20; % number of sample paths to run
-T = 30; % max time
 
-times = 0:dt:T;
+times = 0:dt:30;
 Adata = zeros(length(times),numberofrealisations);
 %% Naive SSA of the degradation process
 for i=1:numberofrealisations
@@ -40,7 +39,9 @@ for i=1:numberofrealisations
     end
 end
 
-tdet=0:0.1:T; % this is just for the deterministic comparison
+tdet=zeros(301,1);
+Adet=zeros(301,1);
+tdet=[0:0.1:30]; % this is just for the deterministic comparison
 Adet(:)=Ainitial*exp(-k*tdet(:));
 
 %% Plot some sample paths for comparison to the mean (deterministic model)
