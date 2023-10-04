@@ -1,4 +1,4 @@
-function CH1_naive_SSA_degradation_process
+function CH1_naive_SSA_degradation
 
 k=0.1; % reaction rate parameter
 Ainitial=20; % initial number of A molecules, n0 in the notes
