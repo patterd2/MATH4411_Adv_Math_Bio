@@ -3,7 +3,7 @@ function CH1_production_degradation
 k1=0.1;
 k2=1;
 
-Ainitial=0;
+Ainitial=100;
 numberofrealisations=5;
 
 for i=1:numberofrealisations
@@ -42,7 +42,8 @@ plot(tdet,Adet,'--k','Linewidth',4);
 xlabel('time [sec]');
 ylabel('number of molecules');
 hh=legend('(deterministic) mean');
-axis([0 100 0 20]);
+axis tight;
+xlim([0 100]);
 set(gca,'linewidth',1.5);
 set(gca,'FontSize',20);
 grid on;
