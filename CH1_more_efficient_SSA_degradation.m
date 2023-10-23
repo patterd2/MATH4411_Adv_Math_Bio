@@ -55,7 +55,7 @@ for i = 1:numberofrealisations
 end
 figure;
 edges = 0.5:1:20;
-histogram(FTvalues,edges);
+histogram(FTvalues,edges,'Normalization','pdf');
 hold on;
 xline(Ainitial*exp(-k*10),'k--','Linewidth',4)
 xlim([0 Ainitial]);
