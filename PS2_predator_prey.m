@@ -1,4 +1,4 @@
-function PS2_Q1_predator_prey
+function PS2_predator_prey
 
 % set system parameters
 b = 1;
