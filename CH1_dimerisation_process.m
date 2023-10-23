@@ -2,7 +2,7 @@ function CH1_dimerisation_process
 
 k1=0.005;
 k2=1;
-T = 100; % max time for each simulation
+T = 1000; % max time for each simulation
 
 %% Direct simulations of the dimerisation process
 Ainitial=15;
@@ -62,8 +62,9 @@ hold on
 plot(tdet,Ms*ones(1,length(tdet)),'--r','Linewidth',4);
 plot(tdet,(Ms+2*sqrt(Vs))*ones(1,length(tdet)),'-.b','Linewidth',4);
 plot(tdet,(Ms-2*sqrt(Vs))*ones(1,length(tdet)),'-.b','Linewidth',4);
-for i = 1:min(10,numberofrealisations)
-    h=stairs(timeplot(:,i),Aplot(:,i));
+for i = 1:min(25,numberofrealisations)
+    [~, t2] = max(timeplot(:,i));
+    h=stairs(timeplot(1:t2,i),Aplot(1:t2,i));
     set(h,'Linewidth',1.5);
     hold on;
 end
@@ -79,6 +80,7 @@ axis tight;
 xlim([0 T]);
 set(gca,'Fontsize',20);
 grid on;
+%keyboard;
 %% Plotting of the empirical and stationary PMFs
 figure;
 h1=bar(0:23,p);

@@ -3,7 +3,7 @@ function CH1_production_degradation_CME
 k1=0.1; % production rate
 k2=1; % degradation rate
 
-numberofrealisations=1000;
+numberofrealisations=100;
 T = 100; % length of each simulation
 
 M = 30; % keep track of A values between 0 and M
@@ -11,7 +11,7 @@ p=zeros(M,1); % need to adjust size when parameters are adjusted
 
 for i = 1:numberofrealisations
     time=0;
-    A = 0; %ceil(k2/k1); % initialise at the expected mean to save time
+    A = 15; %ceil(k2/k1); % initialise at the expected mean to save time
     while (time < T)
         rr=rand(2,1);
         a0=k1*A+k2;
