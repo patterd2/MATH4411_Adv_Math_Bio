@@ -56,4 +56,3 @@ xlabel('number of molecules');
 legend('Gillespie SSA','Stationary Distribution');
 set(gca,'Fontsize',20);
 grid on;
-
