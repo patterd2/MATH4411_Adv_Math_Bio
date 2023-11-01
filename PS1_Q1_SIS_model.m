@@ -1,4 +1,4 @@
-function Figure1_3a
+function PS1_Q1_SIS_model
 
 N = 40; % population size
 alpha = 0.0125;
