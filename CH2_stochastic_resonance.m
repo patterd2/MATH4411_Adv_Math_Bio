@@ -4,7 +4,9 @@ function CH2_stochastic_resonance
 k1=0.0004;
 k2=50;
 k3=10;
-k4=25;
+k4=100;
+
+T = 100;
 
 A0=10;
 B0=10;
@@ -15,7 +17,7 @@ kk=0;
 A = A0;
 B = B0;
 %% SSA
-while (time<500)
+while (time<T)
     timeSSAprev=timeSSA;
     timefinSSA=500;
     kk=kk+1;
@@ -55,7 +57,7 @@ while (time<500)
 end
 
 %% Solve ODE (mass action model)
-[t,z] = ode45(@(t,z) [k1*z(1)*z(1)*z(2)+k2-k3*z(1); -k1*z(1)*z(1)*z(2)+k4] ,[0 500],[A0; B0]);
+[t,z] = ode45(@(t,z) [k1*z(1)*z(1)*z(2)+k2-k3*z(1); -k1*z(1)*z(1)*z(2)+k4] ,[0 T],[A0; B0]);
 
 %% Plotting
 figure(1); % logged y-axis version of the plot
@@ -73,13 +75,12 @@ set(gca,'Fontsize',20);
 
 %%
 figure(2);
-plot(tt/60,AA,'r--','Linewidth',4);
+plot(tt/60,AA,'m--','Linewidth',4);
 hold on;
 plot(tt/60,BB,'b--','Linewidth',2);
 xlabel('time [min]');
 ylabel('number of molecules');
-hh=legend('A(t)','B(t)');
-set(hh,'interpreter');
+legend('A(t)','B(t)');
 axis tight;
 grid on;
 set(gca,'Fontsize',20);
@@ -92,8 +93,7 @@ ynul1=(k3*xval1-k2)./(k1*xval1.*xval1);
 ynul2=k4./(k1*xval2.*xval2);
 semilogx(AA,BB,'b','Linewidth',2);
 hold on;
-h=semilogx(z(1,1),z(1,2),'b','MarkerSize',6);
-set(h,'Color','r','Linewidth',2);
+semilogx(z(:,1),z(:,2),'r','Linewidth',2);
 xlabel('number of A molecules');
 ylabel('number of B molecules');
 h=semilogx(xval1,ynul1);
@@ -101,9 +101,9 @@ set(h,'Color','g','Linewidth',4);
 h=semilogx(xval2,ynul2);
 set(h,'Color','g','Linewidth',4);
 h=semilogx([(k4+k2)/k3],[k4*k3*k3/(k1*(k4+k2)*(k4+k2))],'ro');
+semilogx(z(:,1),z(:,2),'r','Linewidth',2);
 set(h,'Markersize',4,'Linewidth',6);
-h=semilogx(z(:,1),z(:,2));
-set(h,'Color','r','Linewidth',2);
+scatter(z(1,1),z(1,2),'b','Linewidth',5);
 legend('stochastic','deterministic');
 set(gca,'XTick',[1 10 100 1000 10000]);
 set(gca,'Fontsize',20);
@@ -113,20 +113,29 @@ xlim([0 1000]);
 
 %%
 figure(4);
-[t,z] = ode45(@(t,z) [k1*z(1)*z(1)*z(2)+k2-k3*z(1); -k1*z(1)*z(1)*z(2)+k4] ,[0 500],[A0; B0]);
-xval1=1:500;
-xval2=1:1500;
+xval1=0:0.1:500;
+xval2=0:0.1:1500;
 ynul1=(k3*xval1-k2)./(k1*xval1.*xval1);
 ynul2=k4./(k1*xval2.*xval2);
-plot(xval1,ynul1,'g','Linewidth',4);
+plot(xval1,ynul1,'g','Linewidth',5);
 hold on;
-plot(xval2,ynul2,'g','Linewidth',4);
-ylim([0 1500]);
-xlim([0 200]);
+plot(xval2,ynul2,'g','Linewidth',5);
+ylim([-5 1400]);
+xlim([0 100]);
 xlabel('number of A molecules');
 ylabel('number of B molecules');
-plot(z(:,1),z(:,2),'r','Linewidth',2);
-scatter(z(1,1),z(1,2),'b','Linewidth',6);
+[t,z] = ode45(@(t,z) [k1*z(1)*z(1)*z(2)+k2-k3*z(1); -k1*z(1)*z(1)*z(2)+k4] ,[0 T],[40; 400]);
+plot(z(:,1),z(:,2),'.-r','Linewidth',2);
+scatter(z(1,1),z(1,2),'b','Linewidth',5);
+scatter(z(end,1),z(end,2),'r','Linewidth',5);
 set(gca,'Fontsize',20);
 grid on;
+
+% add direction field
+[X,Y] = meshgrid(linspace(0,100,10),linspace(0,1400,14));
+du = k1*X.*X.*Y+k2-k3*X;
+dv = -k1*X.*X.*Y+k4;
+un=du./sqrt(du.^2+dv.^2);
+uv=dv./sqrt(du.^2+dv.^2);
+quiver(X,Y,un,uv,0.1,'k','LineWidth',1.5,'Alignment','center','MaxHeadSize',5,'AlignVertexCenters','on');
 
