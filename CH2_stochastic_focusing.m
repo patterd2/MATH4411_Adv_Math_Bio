@@ -1,19 +1,32 @@
 function CH2_stochastic_focusing
 %% set parameters
+% k1=100;
+% k2=1000;
+% k3=0.01;
+% k4=9900;
+% k5=1000;
+% k6=100;
+
 k1=100;
-k2=1000;
+k2=0.1;
 k3=0.01;
-k4=9900;
+k4=0.99;
 k5=1000;
 k6=100;
 
-numberofrealisations = 3;
+numberofrealisations = 10;
+
+% A0 = 10;
+% B0 = 100;
+% C0 = 0;
 
 A0 = 10;
 B0 = 100;
-C0 = 0;
+C0 = 10;
+
 %% SSA
 for i=1:numberofrealisations
+    k5 = 1000;
     A=A0;
     B=B0;
     C=C0;
@@ -65,7 +78,7 @@ for i=1:numberofrealisations
     end
 end
 
-[t,z] = ode15s(@myode,[0 2100],[10; 100; 0]);
+[t,z] = ode15s(@myode,[0 2200],[A0; B0; C0]);
 
 t=t/60;
 %% Plotting
@@ -102,17 +115,17 @@ grid on;
 
 %%
 figure(3);
-plot(t(1:3:end),z(1:3:end,3),'-.k','Linewidth',2);
+plot(t(1:3:end),z(1:3:end,3),'-.k','Linewidth',3);
 hold on;
 for j = 1:1
     [~, t2] = max(tt(:,j));
     scatter(tt(1:t2,j),CC(1:t2,j),'Linewidth',4);
 end
-plot(t(1:3:end),z(1:3:end,3),'-.k','Linewidth',2);
+plot(t(1:3:end),z(1:3:end,3),'-.k','Linewidth',3);
 xlabel('time [min]');
 ylabel('number of C molecules');
 legend('solution of ODEs');
-axis([0 35 0 1.2]);
+axis tight;
 set(gca,'Fontsize',20);
 grid on;
 
@@ -134,10 +147,17 @@ disp(['stochastic B = ',num2str(stoB)]);
 
 %% Define RHS of ODE
 function dydt = myode(t,z)
+% k1=100;
+% k2=1000;
+% k3=0.01;
+% k4=k2*99/10;
+% k5=1000;
+% k6=100;
+
 k1=100;
-k2=1000;
+k2=0.1;
 k3=0.01;
-k4=k2*99/10;
+k4=0.99;
 k5=1000;
 k6=100;
 if (t>600)
