@@ -1,4 +1,5 @@
-function Figure3_2b
+function CH3_FP2
+% requires the file 'data_Figure3_2b.dat' in the same directory
 
 k1=0.001;
 k2=0.75;

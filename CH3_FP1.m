@@ -1,12 +1,14 @@
-function Figure3_2a
+function CH3_FP1
 
 dt=0.001;
 finaltime=1; 
 
 n=finaltime/dt;
-numberofrealizations=10000;
-hist=zeros(50,1);
+numberofrealizations=1000;
+xg=-5:0.05:5;
+
 x=-4.9:0.2:4.9;
+hist=zeros(length(x),1);
 
 for j=1:10
     dX = sqrt(dt)*randn(n,numberofrealizations);   
@@ -18,8 +20,6 @@ end
 
 hist=hist/numberofrealizations/2;
 
-gaussian=zeros(201,1);
-xg=[-5:0.05:5];
 gaussian=exp(-xg.*xg/2)/(sqrt(2*pi));
 
 %% Plotting
