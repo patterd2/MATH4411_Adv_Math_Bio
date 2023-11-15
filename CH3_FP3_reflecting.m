@@ -1,7 +1,7 @@
 function CH3_FP3_reflecting
 %% parameters
 dt=0.001;
-finaltime=1;
+finaltime=10;
 
 n=finaltime/dt + 1;
 numberofrealizations=10000;
@@ -16,7 +16,7 @@ for j = 1:numberofrealizations
         X(i,j) = X(i-1,j) - X(i-1,j)*dt + sqrt(dt)*xi(i,j);
         Y(i,j) = Y(i-1,j) - Y(i-1,j)*dt + sqrt(dt)*xi(i,j);
         if Y(i,j) < 0
-            Y(i,j) = -Y(i-1,j) + X(i-1,j)*dt - sqrt(dt)*xi(i,j);
+            Y(i,j) = -Y(i-1,j) + Y(i-1,j)*dt - sqrt(dt)*xi(i,j);
         end
     end
 end
@@ -37,6 +37,7 @@ figure(2);
 plot(0:dt:finaltime,Y(:,1),'-b','LineWidth',3);
 hold on;
 plot(0:dt:finaltime,X(:,1),'-r','LineWidth',3);
+yline(0,'-.k','LineWidth',2);
 xlabel('time');
 legend('reflecting BC','no BC');
 set(gca,'Fontsize',20);
