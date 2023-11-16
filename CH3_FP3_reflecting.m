@@ -24,21 +24,21 @@ end
 %% Plotting
 bins = -2.2:0.1:2.2;
 figure(1);
-histogram(Y(end,:),bins);
+histogram(Y(end,:),bins,'Normalization','probability');
 hold on;
-histogram(X(end,:),bins);
+histogram(X(end,:),bins,'Normalization','probability');
 xlabel('x');
-ylabel('p(x,1) [estimated]');
+ylabel('p(x,10) [estimated]');
 legend('reflecting BC','no BC');
 set(gca,'Fontsize',20);
 grid on;
 
 figure(2);
-plot(0:dt:finaltime,Y(:,1),'-b','LineWidth',3);
+plot(0:dt:finaltime,Y(:,1),'-b','LineWidth',2);
 hold on;
-plot(0:dt:finaltime,X(:,1),'-r','LineWidth',3);
+plot(0:dt:finaltime,X(:,1),'-r','LineWidth',2);
 yline(0,'-.k','LineWidth',2);
 xlabel('time');
-legend('reflecting BC','no BC');
+legend('X_R(t) (reflected)','X(t)');
 set(gca,'Fontsize',20);
 grid on;
