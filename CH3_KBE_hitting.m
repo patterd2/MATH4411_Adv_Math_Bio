@@ -9,14 +9,15 @@ k5=200;
 dt=0.00001;
 X(1)=245;
 time(1)=0;
+steps = 1000;
 
-for i=1:500
+for i=1:steps
     X(i+1) = X(i)+dt*(-k1*X(i)*X(i)*X(i)+k2*X(i)*X(i)-k3*X(i)+k4)+k5*sqrt(dt)*randn(1,1);
     time(i+1)=i*dt;
 end
 
-Xbig=X(1:100:501);
-timebig=time(1:100:501);
+Xbig=X(1:100:steps+1);
+timebig=time(1:100:steps+1);
 
 %% Plotting
 figure(1);
@@ -24,9 +25,9 @@ plot(time,X,'b','Linewidth',2);
 hold on;
 h1=plot([1],[1],'b','Linewidth',3);
 h2=plot(timebig,Xbig,'r','Linewidth',3);
-line([0 0.005],[250 250],'Color','k','Linestyle','--','Linewidth',3);
+line([0 steps*dt],[250 250],'Color','k','Linestyle','--','Linewidth',3);
 hh=legend([h1 h2],'\Delta_t=10^{-5}','\Delta_t=10^{-3}');
-xlim([ 0 0.005]);
+xlim([0 steps*dt]);
 ylim([min(min(X),min(Xbig)) max(max(X),max(Xbig))]);
 xlabel('t');
 ylabel('X');
