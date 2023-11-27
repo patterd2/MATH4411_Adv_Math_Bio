@@ -1,4 +1,4 @@
-function Figure3_5
+function CH3_CFP_bistable
 
 k1=0.00025;
 k2=0.18;
@@ -16,27 +16,20 @@ end
 statdistr=statdistr/sum(statdistr);
 potential=-log(statdistr);
 
-figure(1);
-set(gca,'Fontsize',18);
-h1=bar([700],[0]);
-set(h1,'FaceColor','y');
-hold on;
-h2=plot(a,statdistr,'b','Linewidth',3);
+figure;
 
+plot(a,statdistr,'b','Linewidth',3);
+hold on;
 load data_Figure3_5a.dat;
 schloglhistogram=data_Figure3_5a;
+plot(a,statdistr,'r','Linewidth',3);
+stem(1:600,schloglhistogram,'b','Markersize',0.5);
+set(gca,'Fontsize',20);
+grid on;
 
-stem([1:600],schloglhistogram,'y','Markersize',0.01);
-plot(a,statdistr,'b','Linewidth',3);
-axis([0 600 0 0.015]);
-set(gca,'XTick',[0 100 200 300 400 500 600]);
-set(gca,'YTick',[0 0.002 0.004 0.006 0.008 0.01 0.012 0.014]);
-set(gca,'Fontsize',18);
-
-xlabel('$x$','interpreter','latex');
-ylabel('stationary distribution','interpreter','latex');
-h3=legend([h1 h2],'$\;$stochastic simulation','$\;$chemical Fokker-Planck');
-set(h3,'interpreter','latex','Fontsize',18,'location','northeast');
+xlabel('x','interpreter','tex');
+ylabel('stationary distribution');
+h3=legend('stochastic simulation','chemical Fokker-Planck');
 
 load data_Figure3_5b.dat;
 initialx=data_Figure3_5b(:,1);
@@ -51,22 +44,18 @@ for ii=234:-1:1
     tau(ii)=tau(ii+1)+intp(ii+1)/statdistr(ii+1)/(diff2(ii+1))+intp(ii)/statdistr(ii)/(diff2(ii));
 end
 
-figure(2);
-set(gca,'Fontsize',18);
-h4=bar([700],[0]);
-set(h4,'FaceColor','y');
+figure;
+
+xlabel('y');
+ylabel('\tau(y) [min]','interpreter','tex');
+plot(0:235,[tau(1) tau],'b','Linewidth',3);
 hold on;
-axis([0 238 0 17]);
-set(gca,'XTick',[0 50 100 150 200]);
-set(gca,'YTick',[0 2 4 6 8 10 12 14 16]);
-xlabel('$y$','interpreter','latex');
-ylabel('$\tau(y)$ [min]','interpreter','latex');
-h5=plot([0:235],[tau(1) tau],'b','Linewidth',3);
-stem(initialx,exittimes,'y','Markersize',0.01);
-plot([0:235],[tau(1) tau],'b','Linewidth',3);
-h6=legend([h4 h5],'$\;$stochastic simulation','$\;$integral formula');
-set(h6,'interpreter','latex','Fontsize',18,'location','southwest');
-set(gca,'Fontsize',18);
+plot(0:235,[tau(1) tau],'r','Linewidth',3);
+stem(initialx,exittimes,'b','Markersize',0.5,'LineWidth',1);
+legend('stochastic simulation','integral formula');
+set(gca,'Fontsize',20);
+axis tight;
+grid on;
 
 zz=a(235);
 d2xu=diff2(235);

@@ -1,4 +1,4 @@
-function Figure3_4a
+function CH3_CFP_HT1
 
 k1=0.1;
 k2=1;
@@ -28,9 +28,9 @@ end
 
 p=p/numberofrealisations;
 
-av=[0:1:25];
+av=0:0.25:25;
 pFP=exp(-2*av+((4*k2/k1)-1)*log(k1*av+k2));
-pFP=pFP/sum(pFP);
+pFP=pFP/(0.25*sum(pFP));
 
 figure;
 bar(p);
@@ -42,4 +42,5 @@ legend('Gillespie SSA','Fokker-Planck');
 set(gca,'XTick',[0 2 4 6 8 10 12 14 16 18 20 22]);
 axis tight;
 set(gca,'Fontsize',20);
+grid on;
 
