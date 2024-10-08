@@ -12,10 +12,10 @@ Z=zeros(numberofrealisations,n);
 
 for i=1:numberofrealisations
     dX = sqrt(2*D*dt)*randn(1,n);
-    X(i,:)=cumsum(dX(1,:));
     dY = sqrt(2*D*dt)*randn(1,n);
-    Y(i,:) = cumsum(dY(1,:));
     dZ = sqrt(2*D*dt)*randn(1,n);
+    X(i,:) = cumsum(dX(1,:));
+    Y(i,:) = cumsum(dY(1,:));
     Z(i,:) = cumsum(dZ(1,:));
 end
 
@@ -26,7 +26,7 @@ Zplot(:,:)=Z(:,5:5:n);
 
 
 %% Plotting
-figure(1);
+figure;
 for j = 1:numberofrealisations
     plot([0,Xplot(j,:)],[0,Yplot(j,:)]);
     hold on;
@@ -39,7 +39,7 @@ axis tight
 set(gca,'Fontsize',20);
 grid on;
 
-figure(2);
+figure;
 for j = 1:min(1,numberofrealisations)
     plot3([0,Xplot(j,:)],[0,Yplot(j,:)],[0,Zplot(j,:)])
     hold on;

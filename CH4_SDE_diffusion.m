@@ -11,7 +11,7 @@ for i=1:41
     end
 end
 
-figure(1);
+figure;
 pcolor(x,y,gauss');
 title('P(\eta_x, \eta_y, t=10)');
 xlabel('\eta_x','interpreter','tex');
@@ -33,12 +33,12 @@ numberofrealizations=1000000;
 hist=zeros(40,40);
 
 for i=1:numberofrealizations
-    dX = sqrt(2*D*dt)*randn(1,n);   
-    X = cumsum(dX);             
-    dY = sqrt(2*D*dt)*randn(1,n);   
+    dX = sqrt(2*D*dt)*randn(1,n);
+    X = cumsum(dX);
+    dY = sqrt(2*D*dt)*randn(1,n);
     Y = cumsum(dY);
     if (((X(n)>-1)&&(X(n)<1))&&((Y(n)>-1)&&(Y(n)<1)))
-            hist(round(20*X(n)+20.5),round(20*Y(n)+20.5))=hist(round(20*X(n)+20.5),round(20*Y(n)+20.5))+1;
+        hist(round(20*X(n)+20.5),round(20*Y(n)+20.5))=hist(round(20*X(n)+20.5),round(20*Y(n)+20.5))+1;
     end
 end
 
