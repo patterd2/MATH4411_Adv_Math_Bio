@@ -1,4 +1,4 @@
-function CH2_no_stochastic_focusing
+%function CH2_no_stochastic_focusing
 
 k1=100;
 k2=1000;    
@@ -71,8 +71,8 @@ for j = 1:5
     stairs(tt(1:t2,j),BB(1:t2,j),'Linewidth',2);
 end
 plot(t,z(:,1),'k','Linewidth',4);
-xlabel('time [min]','interpreter','latex');
-ylabel('number of $B$ molecules','interpreter','latex');
+xlabel('time [min]');
+ylabel('number of B molecules');
 hh=legend('solution of ODEs');
 axis([0 35 50 400]);
 set(gca,'Fontsize',20);
@@ -88,4 +88,4 @@ if (t>600)
    A=5;
 end
 dydt =[k2*z(2)-k3*z(1); k1-k2*z(2)-k4*A*z(2)];
-
+end

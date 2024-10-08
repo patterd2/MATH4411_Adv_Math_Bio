@@ -3,7 +3,7 @@ function CH2_bistable_stationary
 k1=0.00025;
 k2=0.18;
 k3=37.5;
-k4=2200;
+k4=2450;
 
 X=0;
 time=0;
@@ -48,11 +48,11 @@ hold on;
 plot(pCME,'r','Linewidth',3);
 stem([0:1:600],phist,'b','Markersize',0.02);
 plot(pCME,'r','Linewidth',3);
-axis([0 600 0 0.015]);
 set(gca,'XTick',[0 100 200 300 400 500 600]);
 box on;
-
 xlabel('number of molecules');
 legend('Gillespie SSA','Stationary Distribution');
 set(gca,'Fontsize',20);
 grid on;
+axis tight;
+xlim([0 600]);
