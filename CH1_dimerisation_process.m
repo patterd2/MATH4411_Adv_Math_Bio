@@ -1,12 +1,12 @@
 function CH1_dimerisation_process
 
-k1=0.005;
-k2=1;
-T = 1000; % max time for each simulation
+k1 = 0.0075;
+k2 = 1;
+T = 500; % max time for each simulation
 
 %% Direct simulations of the dimerisation process
-Ainitial=15;
-numberofrealisations=1000;
+Ainitial = 15;
+numberofrealisations = 1000;
 p=zeros(24,1);
 
 for i=1:numberofrealisations
@@ -33,7 +33,8 @@ for i=1:numberofrealisations
     end
 end
 p=p/numberofrealisations;
-% p(n+1) is the EMPIRICAL stationary probability that A=n for n=0,1,2,3,.....
+% p(n+1) is the ESTIMATED stationary probability that A=n for n=0,1,2,3,.....
+
 %% Use the formula for the PGF to calculate the stationary mean and variance
 x= -1:0.01:1;
 w=size(x);
@@ -46,14 +47,19 @@ Gs=Gs/(sqrt(2)*besseli(1,2*sqrt(2*k2/k1)));
 Gsder=Gsder/(sqrt(2)*besseli(1,2*sqrt(2*k2/k1)));
 Gsderder=Gsderder/(sqrt(2)*besseli(1,2*sqrt(2*k2/k1)));
 
-Ms=Gsder(w(2));
-Vs=Gsderder(w(2))+Ms-Ms*Ms;
+% Calculate the mean and variance from the PGF
+% i.e. evaluate the appropriate derivatives at x = 1
+Ms = Gsder(w(2));
+Vs = Gsderder(w(2))+Ms-Ms*Ms;
 %% Calculate the stationary distribution using the analytic formula
-for n=0:25
-    phi(n+1)=((sqrt(k2/k1)^n)/factorial(n))*besseli(n-1,2*(sqrt(k2/k1)));
+% This formula is derived in Problem Class 2, Question 3
+for n = 0:25
+    phi(n+1) = ((sqrt(k2/k1)^n)/factorial(n))*besseli(n-1,2*(sqrt(k2/k1)));
 end
 phi=phi/sum(phi);
-[tdet,Adet] = ode45(@(t,z) -2*k1*z*z+k2,[0 T],Ainitial);
+
+%% Use a built in ODE solver to solve the law of mass action ODE
+[tdet,Adet] = ode45(@(t,z) -2*k1*z*z+k2,[0 T], Ainitial);
 
 %% Plotting of sample paths + solution to ODE + stationary mean & variance
 figure;

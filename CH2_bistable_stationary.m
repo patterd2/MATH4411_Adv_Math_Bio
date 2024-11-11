@@ -2,8 +2,8 @@ function CH2_bistable_stationary
 
 k1=0.00025;
 k2=0.18;
-k3=37.5;
-k4=2450;
+k3=36;
+k4=2200;
 
 X=0;
 time=0;
