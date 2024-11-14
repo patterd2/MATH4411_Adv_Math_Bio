@@ -8,7 +8,9 @@ k4 = 500;
 k5 = 100;
 k6 = 200000;
 
-numberofrealisations = 1;
+display((k5^2 + k1*k5)/(k2*k4 + k5*k6));
+
+numberofrealisations = 10;
 
 % A0 = 10;
 % B0 = 100;
@@ -28,7 +30,7 @@ for i=1:numberofrealisations
     for kk=1:2100
         while (time<kk*1)
             if (time>600)
-                k4=2000;
+                k4=1000;
             end
             rr=rand(2,1);
             a0=k1+k2*A*C+k3*B+k4+k5*A+k6*C;
@@ -108,6 +110,12 @@ set(gca,'Fontsize',20);
 grid on;
 
 %%
+sum = 0;
+for n = 0:100
+    sum = sum + (1/factorial(n))*(k2*n/k3)*(k1/(k6+k2*n))*exp(-k4/k5)*(k4/k5)^n ;
+end
+display(sum);
+%%
 figure(3);
 plot(t(1:3:end),z(1:3:end,3),'-.k','Linewidth',3);
 hold on;
@@ -126,15 +134,15 @@ grid on;
 toc;
 %% Define RHS of ODE
 function dydt = myode(t,z)
-k1=300;
-k2=20000;
-k3=1;
-k4=500;
+k1 = 300;
+k2 = 20000;
+k3 = 1;
+k4 = 500;
 k5 = 100;
-k6=200000;
+k6 = 200000;
 
 if (t>600)
-    k4 = 2000;
+    k4 = 1000;
 end
 dydt =[k4-k5*z(1); k2*z(1)*z(3)-k3*z(2); k1-k6*z(3)-k2*z(1)*z(3)];
 end
