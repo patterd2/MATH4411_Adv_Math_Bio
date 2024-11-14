@@ -1,6 +1,6 @@
 function CH1_Gillespie_example_stationary
 
-k1=0.001;
+k1=0.002;
 k2=0.01;
 k3=1.2;
 k4=1;

@@ -5,10 +5,10 @@ k2=0.01;
 k3=1.2;
 k4=1;
 
-Ainitial=15;
-Binitial=15;
-numberofrealisations=5;
-T = 50;
+Ainitial = 15;
+Binitial = 15;
+numberofrealisations = 3;
+T = 300;
 
 for i = 1:numberofrealisations
     A=Ainitial;

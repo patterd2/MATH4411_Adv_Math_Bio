@@ -20,9 +20,9 @@ plot(t3,z3,'g','Linewidth',3);
 plot(t4,z4,'b','Linewidth',3);
 
 % Only uncomment these lines for the fixed points with k4 = 2200
-% line([0 1],[100 100],'LineStyle',':','Color','k','Linewidth',2);
-% line([0 1],[220 220],'LineStyle',':','Color','k','Linewidth',2);
-% line([0 1],[400 400],'LineStyle',':','Color','k','Linewidth',2);
+line([0 1],[100 100],'LineStyle',':','Color','k','Linewidth',2);
+line([0 1],[220 220],'LineStyle',':','Color','k','Linewidth',2);
+line([0 1],[400 400],'LineStyle',':','Color','k','Linewidth',2);
 
 xlabel('time [min]');
 ylabel('number of A molecules');
@@ -79,7 +79,7 @@ hold on;
 %line([0 T],[100 100],'LineStyle',':','Color','k','Linewidth',2);
 %line([0 T],[220 220],'LineStyle',':','Color','k','Linewidth',2);
 %line([0 T],[400 400],'LineStyle',':','Color','k','Linewidth',2);
-
+ 
 legend('stochastic','deterministic');
 axis([0 T 0 550]);
 box on;

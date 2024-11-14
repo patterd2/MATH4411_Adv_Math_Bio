@@ -1,10 +1,10 @@
 function CH1_production_degradation
 
 k1=0.1;
-k2=1;
+k2=10;
 
-Ainitial=100;
-numberofrealisations=5;
+Ainitial=5;
+numberofrealisations=100;
 
 for i=1:numberofrealisations
     A=Ainitial;
@@ -12,7 +12,7 @@ for i=1:numberofrealisations
     k=1;
     Aplot(1,i)=A;
     timeplot(1,i)=0;
-    while (k<1000)
+    while (k<2000)
           rr=rand(2,1);
           a0=k1*A+k2;
           time=time+(1/a0)*log(1/rr(1));
@@ -27,7 +27,7 @@ for i=1:numberofrealisations
     end
 end
 
-tdet=0:0.2:100;
+tdet=0:0.1:100;
 Adet(:)=(Ainitial-k2/k1)*exp(-k1*tdet(:))+k2/k1;
 
 %% Plotting

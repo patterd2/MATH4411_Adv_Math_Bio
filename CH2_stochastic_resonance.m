@@ -4,9 +4,9 @@ function CH2_stochastic_resonance
 k1=0.0004;
 k2=50;
 k3=10;
-k4=100;
+k4=50;
 
-T = 100;
+T = 300;
 
 A0=10;
 B0=10;
@@ -57,7 +57,7 @@ while (time<T)
 end
 
 %% Solve ODE (mass action model)
-[t,z] = ode45(@(t,z) [k1*z(1)*z(1)*z(2)+k2-k3*z(1); -k1*z(1)*z(1)*z(2)+k4] ,[0 T],[A0; B0]);
+[t,z] = ode15s(@(t,z) [k1*z(1)*z(1)*z(2)+k2-k3*z(1); -k1*z(1)*z(1)*z(2)+k4] ,[0 T],[A0; B0]);
 
 %% Plotting
 figure(1); % logged y-axis version of the plot

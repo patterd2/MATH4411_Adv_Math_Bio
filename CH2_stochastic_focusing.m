@@ -1,5 +1,6 @@
 function CH2_stochastic_focusing
 %% set parameters
+
 k1=100;
 k2=1000;
 k3=0.01;
@@ -22,6 +23,8 @@ numberofrealisations = 10;
 A0 = 10;
 B0 = 100;
 C0 = 10;
+
+plot_stochastic_approx = 1; % toggle plotting of stochastic approx.
 
 %% SSA
 for i=1:numberofrealisations
@@ -95,19 +98,31 @@ legend('solution of ODEs');
 axis([0 35 0 22]);
 set(gca,'Fontsize',20);
 grid on;
-
+%% Stochastic approximation for small values of C
+k5 = 500;
+M_As = k5/k6;
+Pc = 0;
+for i = 0:100
+    Pc = Pc + (k1/(k2+ i*k4))*(M_As^i)*exp(-M_As)/factorial(i);
+end
+M_Bs = Pc*k2/k3;
 %%
 figure(2);
 plot(t,z(:,2),'k','Linewidth',4);
 hold on;
+xlabel('time [min]');
+ylabel('number of B molecules');
+if plot_stochastic_approx == 1
+    yline(M_Bs,'--','LineWidth',3,'Color','b');
+    legend('solution of ODEs','Stochastic appoximation');
+else
+    legend('solution of ODEs');
+end
 for j = 1:numberofrealisations
     [~, t2] = max(tt(:,j));
     stairs(tt(1:t2,j),BB(1:t2,j),'Linewidth',2);
 end
 plot(t,z(:,2),'k','Linewidth',4);
-xlabel('time [min]');
-ylabel('number of B molecules');
-legend('solution of ODEs');
 axis([0 35 50 400]);
 set(gca,'Fontsize',20);
 grid on;
@@ -125,6 +140,7 @@ xlabel('time [min]');
 ylabel('number of C molecules');
 legend('solution of ODEs');
 axis tight;
+ylim([0 2]);
 set(gca,'Fontsize',20);
 grid on;
 
@@ -142,8 +158,6 @@ stoB=sum(((k1*k2/k3)./(k2+k4*n)).*(((averA).^n)./factorial(n))*exp(-averA));
 disp('time > 10 min');
 disp(['deterministic B = ',num2str(detB)]);
 disp(['stochastic B = ',num2str(stoB)]);
-
-
 %% Define RHS of ODE
 function dydt = myode(t,z)
 k1=100;

@@ -1,8 +1,8 @@
 function CH1_more_efficient_SSA_degradation
 
-k=0.1; % reaction rate
-Ainitial=20; % initial number of molecules
-numberofrealisations=200; % number of sample paths
+k = 0.1; % reaction rate
+Ainitial = 20; % initial number of molecules
+numberofrealisations = 500; % number of sample paths
 T = 30; % end time for simulation 
 
 %% More efficient SSA
@@ -14,7 +14,7 @@ for i=1:numberofrealisations
     timeplot(1,i)=0;
 
     while (j<Ainitial+1)
-         rr=rand(2,1);
+         rr=rand(3,1);
          a0=k*A;
          time=time+(1/a0)*log(1/rr(1));
          A=A-1;
