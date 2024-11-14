@@ -8,9 +8,10 @@ k4 = 500;
 k5 = 100;
 k6 = 200000;
 
-display((k5^2 + k1*k5)/(k2*k4 + k5*k6));
+% Check if we are in the right parameter regime
+%display((k5^2 + k1*k5)/(k2*k4 + k5*k6));
 
-numberofrealisations = 10;
+numberofrealisations = 250;
 
 % A0 = 10;
 % B0 = 100;
@@ -109,12 +110,15 @@ axis tight;
 set(gca,'Fontsize',20);
 grid on;
 
-%%
+%% Compute the approximations for the mean of B
 sum = 0;
-for n = 0:100
+for n = 0:50
     sum = sum + (1/factorial(n))*(k2*n/k3)*(k1/(k6+k2*n))*exp(-k4/k5)*(k4/k5)^n ;
 end
-display(sum);
+B_bar = (k1*k2*k4)/(k3*(k5*k6 + k2*k4));
+disp(['The monte-carlo approx. of the mean of B is: ',num2str(mean(BB(:,end)))]);
+disp(['The stochastic approx. of the mean of B is: ',num2str(sum)]);
+disp(['The mass action approx. of the mean of B is: ',num2str(B_bar)]);
 %%
 figure(3);
 plot(t(1:3:end),z(1:3:end,3),'-.k','Linewidth',3);
