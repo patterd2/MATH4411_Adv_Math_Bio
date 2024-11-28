@@ -1,3 +1,4 @@
+set(0,'defaultaxesfontsize', 20);
 %% Plot the deterministic direction field for part (a)
 x = -0.25:0.01:1.25;
 f = -x.*(x-0.5).*(x-1);

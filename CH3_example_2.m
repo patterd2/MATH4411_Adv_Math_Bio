@@ -2,8 +2,8 @@ function CH3_example_2
 
 dt=0.1;
 finaltime=10*60;  % 10 minutes
-D=0.0001;         % 10^{-4} mm^2 sec^{-1}
-numberofrealisations=5;
+D=0.1;         % 10^{-4} mm^2 sec^{-1}
+numberofrealisations=1;
 
 n=finaltime/dt;
 X=zeros(numberofrealisations,n);

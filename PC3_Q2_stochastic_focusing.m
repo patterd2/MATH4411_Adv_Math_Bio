@@ -1,7 +1,7 @@
 %function PC3_Q2_stochastic_focusing
 tic;
 %% set parameters
-k1 = 300;
+k1 = 3000;
 k2 = 20000;
 k3 = 1;
 k4 = 500;

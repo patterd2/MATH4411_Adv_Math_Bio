@@ -1,11 +1,11 @@
 %function CH3_FP3_reflecting
 tic;
 %% parameters
-dt=0.001;
+dt=0.01;
 finaltime=200;
 
 n=finaltime/dt + 1;
-numberofrealizations = 500;
+numberofrealizations = 300;
 L = 1;
 
 %% time stepping to simualate the processes
@@ -13,23 +13,16 @@ xi = randn(n,numberofrealizations);
 X = zeros(n,numberofrealizations);
 Y = zeros(n,numberofrealizations);
 tau = finaltime*ones(1,numberofrealizations);
-f = @(x) x.^3;%-x.*(x-0.5).*(x-1);
-g = @(x) 1/(2*sqrt(2));%-x.*(x-0.5).*(x-1);
+f = @(x) -x.*(x-0.5).*(x-1);
+g = @(x) 1/(5*sqrt(2));
 
 for j = 1:numberofrealizations
     for i = 2:n
-        %X(i,j) = X(i-1,j) + f(X(i-1,j))*dt + g(X(i-1,j))*sqrt(dt)*xi(i,j);
+        X(i,j) = X(i-1,j) + f(X(i-1,j))*dt + g(X(i-1,j))*sqrt(dt)*xi(i,j);
         Y(i,j) = Y(i-1,j) + f(Y(i-1,j))*dt + g(Y(i-1,j))*sqrt(dt)*xi(i,j);
-        % if Y(i,j) < 0
-        %    Y(i,j) = - Y(i-1,j) + Y(i-1,j)*dt - sqrt(2)*sqrt(dt)*xi(i,j);
-        % end
-        if Y(i,j) > L
-            Y(i,j) = -2 + Y(i,j);
-           %Y(i,j) = Y(i-1,j) + 2*(L-Y(i-1,j)) - f(Y(i-1,j))*dt - g(Y(i-1,j))*sqrt(dt)*xi(i,j);
-        end
-        if Y(i,j) < -L
-           Y(i,j) = 2 + Y(i,j);
-            %Y(i,j) = - 2*L - Y(i-1,j) - f(Y(i-1,j))*dt - g(Y(i-1,j))*sqrt(dt)*xi(i,j);
+        % Y is reflected at x = zero
+        if Y(i,j) < 0
+           Y(i,j) = - Y(i-1,j) + Y(i-1,j)*dt - g(Y(i-1,j))*sqrt(dt)*xi(i,j);
         end
     end
 end

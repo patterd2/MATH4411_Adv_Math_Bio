@@ -1,8 +1,8 @@
-function CH3_example_1
+%function CH3_example_1
 
 dt=0.001; % timestep 
 T=10; % final time
-numberofrealisations=5;
+numberofrealisations=500;
 
 n=T/dt;
 X=zeros(numberofrealisations,n);
