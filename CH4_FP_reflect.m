@@ -1,7 +1,7 @@
 function CH4_FP_reflect
 
-dt=0.1;
-finaltime=120*60;  % in minutes
+dt=0.05;
+finaltime=100*60;  % in minutes
 D=0.0001;         % 10^{-4} mm^2 sec^{-1
 numberofmolecules = 2500;
 position=0.4*ones(numberofmolecules,1);

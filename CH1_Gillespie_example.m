@@ -7,8 +7,8 @@ k4=1;
 
 Ainitial = 15;
 Binitial = 15;
-numberofrealisations = 3;
-T = 300;
+numberofrealisations = 50;
+T = 200;
 
 for i = 1:numberofrealisations
     A=Ainitial;

@@ -2,7 +2,7 @@ function CH1_dimerisation_process
 
 k1 = 0.0075;
 k2 = 1;
-T = 500; % max time for each simulation
+T = 100; % max time for each simulation
 
 %% Direct simulations of the dimerisation process
 Ainitial = 15;
@@ -65,25 +65,26 @@ phi=phi/sum(phi);
 figure;
 plot(tdet,Adet,'--k','Linewidth',4);
 hold on
-plot(tdet,Ms*ones(1,length(tdet)),'--r','Linewidth',4);
-plot(tdet,(Ms+2*sqrt(Vs))*ones(1,length(tdet)),'-.b','Linewidth',4);
-plot(tdet,(Ms-2*sqrt(Vs))*ones(1,length(tdet)),'-.b','Linewidth',4);
+plot(tdet,Ms*ones(1,length(tdet)),'--r','Linewidth',5);
+plot(tdet,(Ms+2*sqrt(Vs))*ones(1,length(tdet)),'-b','Linewidth',5);
+plot(tdet,(Ms-2*sqrt(Vs))*ones(1,length(tdet)),'-b','Linewidth',5);
 for i = 1:min(25,numberofrealisations)
     [~, t2] = max(timeplot(:,i));
     h=stairs(timeplot(1:t2,i),Aplot(1:t2,i));
-    set(h,'Linewidth',1.5);
+    set(h,'Linewidth',1);
     hold on;
 end
-plot(tdet,Adet,'--k','Linewidth',4);
+plot(tdet,Adet,'--k','Linewidth',5);
 hold on;
-plot(tdet,Ms*ones(1,length(tdet)),'--r','Linewidth',4);
-plot(tdet,(Ms+2*sqrt(Vs))*ones(1,length(tdet)),'-.b','Linewidth',4);
-plot(tdet,(Ms-2*sqrt(Vs))*ones(1,length(tdet)),'-.b','Linewidth',4);
+plot(tdet,Ms*ones(1,length(tdet)),'--r','Linewidth',5);
+plot(tdet,(Ms+2*sqrt(Vs))*ones(1,length(tdet)),'-b','Linewidth',4);
+plot(tdet,(Ms-2*sqrt(Vs))*ones(1,length(tdet)),'-b','Linewidth',4);
 xlabel('time [sec]');
 ylabel('number of molecules');
-legend('solution of ODE','M_s','M_s \pm 2 (V_s)^{1/2}','location','southwest');
+legend('mass action model','M_s','M_s \pm 2 (V_s)^{1/2}','location','southwest');
 axis tight;
 xlim([0 T]);
+ylim([0 max(max(Aplot))+1]);
 set(gca,'Fontsize',20);
 grid on;
 %keyboard;

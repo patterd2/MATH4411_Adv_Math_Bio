@@ -5,7 +5,7 @@ finaltime=15*60;  % 15 minutes
 D=0.0001;         % 10^{-4} mm^2 sec^{-1}
 
 n=finaltime/dt+1;
-numberofrealisations=12;
+numberofrealisations=10;
 X=zeros(numberofrealisations,n);
 
 for i=1:numberofrealisations

@@ -22,7 +22,11 @@ for j = 1:numberofrealizations
         Y(i,j) = Y(i-1,j) + f(Y(i-1,j))*dt + g(Y(i-1,j))*sqrt(dt)*xi(i,j);
         % Y is reflected at x = zero
         if Y(i,j) < 0
-           Y(i,j) = - Y(i-1,j) + Y(i-1,j)*dt - g(Y(i-1,j))*sqrt(dt)*xi(i,j);
+            Y(i,j) = - Y(i-1,j) - f(Y(i-1,j))*dt - g(Y(i-1,j))*sqrt(dt)*xi(i,j);
+        end
+        % Y is reflected at x = 1
+        if Y(i,j) > 1
+            Y(i,j) = Y(i-1,j) + 2*(1 - Y(i-1,j)) - f(Y(i-1,j))*dt - g(Y(i-1,j))*sqrt(dt)*xi(i,j);
         end
     end
 end

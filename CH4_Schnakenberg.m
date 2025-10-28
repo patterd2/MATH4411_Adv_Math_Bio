@@ -4,7 +4,7 @@ function CH4_Schnakenberg
 % Schnakenberg reaction kinetics with discrete diffusive movement
 
 %% Set parameter values
-DA = 1.0000e-05;
+DA = 1.000e-05;
 DB = 1.0000e-03;
 K = 40; % number of compartments
 L = 1; % spatial domain = [0,L]
@@ -18,7 +18,7 @@ dA(1,K) = DA/h^2;
 dB = 2*(DB/h^2)*ones(1,K);
 dB(1,1) = DB/h^2;
 dB(1,K) = DB/h^2;
-k1 = 1.0000e-06; % already scaled by volume to give effective rates
+k1 = 1.0e-06; % already scaled by volume to give effective rates
 k2 = 1;
 k3 = 0.02;
 k4 = 3;
@@ -106,7 +106,7 @@ while time < T && kk < M
         figure(1);
         subplot(1,2,1), bar(A(kk,:));
         title('A molecules');
-        xlabel('x');
+        xlabel('compartment number');
         ylim([0 500]);
         set(gca,'FontSize',20);
         grid on;
@@ -114,7 +114,7 @@ while time < T && kk < M
         ylim([0 120]);
         text(1,115,str,'FontSize',20);
         title('B molecules');
-        xlabel('x');
+        xlabel('compartment number');
         set(gca,'FontSize',20);
         grid on;
     end
@@ -175,7 +175,7 @@ grid on;
 %% Plotting: Space-time plots
 
 figure;
-imagesc(A(1:kk,:)), xlabel('x'), ylabel('time (seconds)'),...
+imagesc(A(1:kk,:)), xlabel('compartment number'), ylabel('time (seconds)'),...
     set(gca,'YDir','normal');
 title('A molecules');
 clim([100 500]);

@@ -2,14 +2,13 @@ function CH1_naive_SSA_degradation
 
 k=0.1; % reaction rate parameter
 Ainitial=20; % initial number of A molecules, n0 in the notes
-dt=0.005; % discretisation parameter/step size -> play with this, test limits!
-numberofrealisations=50; % number of sample paths to run
+dt=1; % discretisation parameter/step size -> play with this, test limits!
+numberofrealisations=100; % number of sample paths to run
 
 times = 0:dt:30;
 Adata = zeros(length(times),numberofrealisations);
 %% Naive SSA of the degradation process
 for i=1:numberofrealisations
-
     A=Ainitial;
     time=0;
     j=1;

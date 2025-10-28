@@ -1,7 +1,7 @@
 function CH4_compartment_FP
 
 D=0.0001;         % 10^{-4} mm^2 sec^{-1}
-finaltime = 1*60;   % in minutes
+finaltime = 100*60;   % in minutes
 numberofmolecules=1500;
 
 n=40; % number of compartments

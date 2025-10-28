@@ -29,7 +29,7 @@ set(gca,'Fontsize',20);
 
 dt=10;
 n=finaltime/dt;
-numberofrealizations=1000000;
+numberofrealizations=100000;
 hist=zeros(40,40);
 
 for i=1:numberofrealizations

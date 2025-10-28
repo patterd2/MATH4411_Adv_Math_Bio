@@ -1,3 +1,4 @@
+% second sim
 function CH4_RD_compartment
 
 h=0.01;
@@ -5,7 +6,7 @@ xdet=[h/2:h:1-h/2];
 w=size(xdet);
 N=w(2);
 
-[t,y]=ode45(@density,[0 200*60],[zeros(N,1) zeros(N,1)]);
+[t,y]=ode45(@density,[0 2000*60],[zeros(N,1) zeros(N,1)]);
 z=size(y);
 endline=z(1);
 detdenA=y(endline,1:N)';

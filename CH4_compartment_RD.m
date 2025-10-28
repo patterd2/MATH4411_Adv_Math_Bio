@@ -1,3 +1,4 @@
+% first sim
 function CH4_compartment_RD
 
 D=0.0001;
