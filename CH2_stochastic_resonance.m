@@ -4,9 +4,9 @@ function CH2_stochastic_resonance
 k1=0.0004;
 k2=50;
 k3=10;
-k4=50;
+k4=25;
 
-T = 300;
+T = 600;
 
 A0=10;
 B0=10;
@@ -68,7 +68,7 @@ h=semilogy(t/60,z(:,1));
 set(h,'Color','r','Linewidth',4);
 xlabel('time [min]');
 ylabel('number of A molecules');
-legend('stochastic','deterministic');
+legend('stochastic','deterministic (mass action)');
 axis tight;
 set(gca,'YTick',[1 10 100 1000 10000]);
 set(gca,'Fontsize',20);
@@ -104,12 +104,12 @@ h=semilogx([(k4+k2)/k3],[k4*k3*k3/(k1*(k4+k2)*(k4+k2))],'ro');
 semilogx(z(:,1),z(:,2),'r','Linewidth',2);
 set(h,'Markersize',4,'Linewidth',6);
 scatter(z(1,1),z(1,2),'b','Linewidth',5);
-legend('stochastic','deterministic');
+legend('stochastic','deterministic (mass action)');
 set(gca,'XTick',[1 10 100 1000 10000]);
 set(gca,'Fontsize',20);
 axis tight;
 ylim([0 1500]);
-xlim([0 1000]);
+xlim([0 1500]);
 
 %%
 figure(4);
@@ -139,3 +139,4 @@ un=du./sqrt(du.^2+dv.^2);
 uv=dv./sqrt(du.^2+dv.^2);
 quiver(X,Y,un,uv,0.1,'k','LineWidth',1.5,'Alignment','center','MaxHeadSize',5,'AlignVertexCenters','on');
 
+figure(1);

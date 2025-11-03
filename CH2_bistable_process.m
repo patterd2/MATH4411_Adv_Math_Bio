@@ -5,6 +5,8 @@ k2=0.18;
 k3=37.5;
 k4=2200;
 
+T = 100; % final time
+
 %% Solve ODE and plot solutions
 [t1,z1] = ode45(@(t,z) -k1*z(1)*z(1)*z(1)+k2*z(1)*z(1)-k3*z(1)+k4,[0 1],0);
 [t2,z2] = ode45(@(t,z) -k1*z(1)*z(1)*z(1)+k2*z(1)*z(1)-k3*z(1)+k4,[0 1],200);
@@ -34,11 +36,10 @@ set(gca,'Fontsize',20);
 grid on;
 
 %% SSA to simulate the stochastic process and plot solutions vs ODE solutions
-X=500;
+X=0;
 time=0;
 timeSSA=0;
 kk=0;
-T = 100;
 
 while (time<T)
     timeSSAprev=timeSSA;
@@ -76,12 +77,14 @@ ylabel('number of A molecules');
 hold on;
 
 % Only uncomment these lines for the fixed points with k4 = 2200
-%line([0 T],[100 100],'LineStyle',':','Color','k','Linewidth',2);
-%line([0 T],[220 220],'LineStyle',':','Color','k','Linewidth',2);
-%line([0 T],[400 400],'LineStyle',':','Color','k','Linewidth',2);
+line([0 T],[100 100],'LineStyle',':','Color','k','Linewidth',2);
+line([0 T],[220 220],'LineStyle',':','Color','k','Linewidth',2);
+line([0 T],[400 400],'LineStyle',':','Color','k','Linewidth',2);
  
 legend('stochastic','deterministic');
 axis([0 T 0 550]);
 box on;
 set(gca,'Fontsize',20);
 grid on;
+
+figure(1);
