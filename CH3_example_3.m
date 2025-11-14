@@ -2,8 +2,8 @@ function CH3_example_3
 
 dt=0.001;
 T=50; 
-numberofrealisations=500;
-sigma = 1;
+numberofrealisations=100;
+sigma = 10; % g
 
 n=T/dt;
 X=zeros(numberofrealisations,n);

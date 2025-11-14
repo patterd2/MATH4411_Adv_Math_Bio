@@ -35,12 +35,13 @@ for ii=100.5:0.5:249.5
     integral=quad(psfun,10,xv);
     overlinetau=overlinetau+dx*(2/(k5*k5))*(exp(-(-3*k1*xv*xv*xv*xv+4*k2*xv*xv*xv-6*k3*xv*xv+12*k4*xv)/(6*k5*k5)))*integral;
 end
-    xv=100;
-    integral=quad(psfun,10,xv);
-    overlinetau=overlinetau+(dx/2)*(2/(k5*k5))*(exp(-(-3*k1*xv*xv*xv*xv+4*k2*xv*xv*xv-6*k3*xv*xv+12*k4*xv)/(6*k5*k5)))*integral;
-    xv=250;
-    integral=quad(psfun,10,xv);
-    overlinetau=overlinetau+(dx/2)*(2/(k5*k5))*(exp(-(-3*k1*xv*xv*xv*xv+4*k2*xv*xv*xv-6*k3*xv*xv+12*k4*xv)/(6*k5*k5)))*integral;
-
+xv=100;
+integral=quad(psfun,10,xv);
+overlinetau=overlinetau+(dx/2)*(2/(k5*k5))*(exp(-(-3*k1*xv*xv*xv*xv+4*k2*xv*xv*xv-6*k3*xv*xv+12*k4*xv)/(6*k5*k5)))*integral;
+xv=250;
+integral=quad(psfun,10,xv);
+overlinetau=overlinetau+(dx/2)*(2/(k5*k5))*(exp(-(-3*k1*xv*xv*xv*xv+4*k2*xv*xv*xv-6*k3*xv*xv+12*k4*xv)/(6*k5*k5)))*integral;
+title('Stationary distribution of an SDE',...
+    'FontWeight','normal');
 disp(['Switching Time:',num2str(overlinetau)]);
 

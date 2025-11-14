@@ -4,14 +4,14 @@ tic;
 k1 = 3000;
 k2 = 20000;
 k3 = 1;
-k4 = 500;
+k4 = 1000;
 k5 = 100;
 k6 = 200000;
 
 % Check if we are in the right parameter regime
 %display((k5^2 + k1*k5)/(k2*k4 + k5*k6));
 
-numberofrealisations = 250;
+numberofrealisations = 5;
 
 % A0 = 10;
 % B0 = 100;
@@ -105,7 +105,7 @@ end
 plot(t,z(:,2),'k','Linewidth',4);
 xlabel('time [min]');
 ylabel('number of B molecules');
-legend('solution of ODEs');
+legend('mass action (ODEs)');
 axis tight;
 set(gca,'Fontsize',20);
 grid on;

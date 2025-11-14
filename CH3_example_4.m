@@ -4,10 +4,10 @@ k1=0.001;
 k2=0.75;
 k3=165;
 k4=10000;
-k5=200; % diffusion coefficient
+k5=200;%200; % diffusion coefficient
 
 dt=0.01;
-finaltime=2000; 
+finaltime=500; 
 n=finaltime/dt;
 
 X=zeros(n+1,1);
@@ -23,7 +23,7 @@ end
 
 %% Plotting
 figure(1);
-plot(time,X,'b');   
+plot(time,X,'b','LineWidth',3);   
 hold on;
 plot(t,z,'r','Linewidth',3);
 xlabel('t');

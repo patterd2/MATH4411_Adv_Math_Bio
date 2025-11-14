@@ -3,7 +3,7 @@ function CH2_bistable_process
 k1=0.00025;
 k2=0.18;
 k3=37.5;
-k4=2200;
+k4=1800;
 
 T = 100; % final time
 

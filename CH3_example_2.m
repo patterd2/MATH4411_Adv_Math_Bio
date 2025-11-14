@@ -1,8 +1,8 @@
 function CH3_example_2
 
-dt=0.1;
-finaltime=10*60;  % 10 minutes
-D=0.1;         % 10^{-4} mm^2 sec^{-1}
+dt=0.001;
+finaltime=1*60;  % in minutes
+D=1;         % 10^{-4} mm^2 sec^{-1}
 numberofrealisations=1;
 
 n=finaltime/dt;

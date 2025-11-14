@@ -93,7 +93,7 @@ for j = 1:numberofrealisations
 end
 plot(t,z(:,1),'k','Linewidth',4);
 xlabel('time [min]');
-ylabel('number of A molecules');
+title('number of A molecules','FontWeight','normal');
 legend('solution of ODEs');
 axis([0 35 0 22]);
 set(gca,'Fontsize',20);
@@ -111,18 +111,18 @@ figure(2);
 plot(t,z(:,2),'k','Linewidth',4);
 hold on;
 xlabel('time [min]');
-ylabel('number of B molecules');
+title('number of B molecules','FontWeight','normal');
 if plot_stochastic_approx == 1
-    yline(M_Bs,'--','LineWidth',3,'Color','b');
-    legend('solution of ODEs','Stochastic appoximation');
+    yline(M_Bs,'-','LineWidth',4,'Color','m');
+    legend('mass action ODEs','Stochastic appoximation');
 else
     legend('solution of ODEs');
 end
 for j = 1:numberofrealisations
     [~, t2] = max(tt(:,j));
-    stairs(tt(1:t2,j),BB(1:t2,j),'Linewidth',2);
+    stairs(tt(1:t2,j),BB(1:t2,j),'Linewidth',2,'HandleVisibility', 'off');
 end
-plot(t,z(:,2),'k','Linewidth',4);
+plot(t,z(:,2),'k','Linewidth',4,'HandleVisibility', 'off');
 axis([0 35 50 400]);
 set(gca,'Fontsize',20);
 grid on;
@@ -158,6 +158,7 @@ stoB=sum(((k1*k2/k3)./(k2+k4*n)).*(((averA).^n)./factorial(n))*exp(-averA));
 disp('time > 10 min');
 disp(['deterministic B = ',num2str(detB)]);
 disp(['stochastic B = ',num2str(stoB)]);
+
 %% Define RHS of ODE
 function dydt = myode(t,z)
 k1=100;
@@ -177,3 +178,8 @@ if (t>600)
     k5=500;
 end
 dydt =[k5-k6*z(1); k2*z(3)-k3*z(2); k1-k2*z(3)-k4*z(1)*z(3)];
+
+end
+figure(1);
+
+end

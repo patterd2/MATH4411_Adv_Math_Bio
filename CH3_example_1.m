@@ -2,7 +2,7 @@
 
 dt=0.001; % timestep 
 T=10; % final time
-numberofrealisations=500;
+numberofrealisations=200;
 
 n=T/dt;
 X=zeros(numberofrealisations,n);
